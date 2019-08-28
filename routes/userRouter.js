@@ -75,5 +75,9 @@ router.delete('/:id', restricted, (req,res)=> {
  })
 })
 
+// test route
+router.get('/test/:id', (req,res)=> {
+
+})
 
 module.exports = router;

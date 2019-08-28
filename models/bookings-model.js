@@ -47,10 +47,15 @@ module.exports = {
 
   // function findBy(filter) {
   //   return db('bookings as b')
-  //   .select('b.booking_id', 'b.user_id', 'u.username', 'b.listing_id', 'l.listing_name', 'b.startDate', 'b.stopDate')
+  //   // .where(filter)
+  //   .select('b.booking_id', 'b.user_id', 'u.username', 'b.listing_id', 'l.listing_name','l.user_id as listing_author', 'b.startDate', 'b.stopDate')
   //   .join('users as u', 'b.user_id', 'u.id')
   //   .join('listings as l', 'l.listing_id', 'b.listing_id')
+    // .join('users as ul', 'l.user_id', 'ul.user_id')
+
+  // function findBy(filter) {
+  //   return db('bookings as b')
+  //   .select('b.booking_id', 'u.username', 'b.listing_id', 'b.startDate', 'b.stopDate')
+  //   .join('users as u', 'b.user_id', 'u.id')
   //   .where(filter)
-
-
   // }
