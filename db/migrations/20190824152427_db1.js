@@ -12,10 +12,18 @@ exports.up = function(knex) {
             .notNullable();
         users.boolean('landowner')
             .notNullable();
+        users
+            .string("image_url", 500)
+        users
+            .text('bio')
+        users
+            .text('email')
+        users
+            .text('telephone')
       })
       .createTable('listings', listings => {
           listings
-            .increments();
+            .increments('listing_id');
           listings
             .string('listing_name')
             .unique()
@@ -29,12 +37,22 @@ exports.up = function(knex) {
             .onUpdate('CASCADE')
             .onDelete('CASCADE')
          listings
+            .string("image_url", 500)
+          listings
+            .text("description")
+          listings
+            .text("address")
+         listings
             .timestamps(true, true)
+         listings
+            .float('lng',10,6)
+         listings
+            .float('lat',10,6)
       })
 };
 
 exports.down = function(knex) {
     return knex.schema
-        .dropTableIfExists('users')
-        .dropTableIfExists('listings');
+    .dropTableIfExists('listings')
+        .dropTableIfExists('users');
 };
