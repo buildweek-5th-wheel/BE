@@ -6,7 +6,8 @@ module.exports = {
     findBy,
     findById,
     remove,
-    update
+    update,
+    getUserWithData
   };
 
   function find() {
@@ -45,17 +46,39 @@ module.exports = {
       .update(data)
   }
 
-  // function findBy(filter) {
-  //   return db('bookings as b')
-  //   // .where(filter)
-  //   .select('b.booking_id', 'b.user_id', 'u.username', 'b.listing_id', 'l.listing_name','l.user_id as listing_author', 'b.startDate', 'b.stopDate')
-  //   .join('users as u', 'b.user_id', 'u.id')
-  //   .join('listings as l', 'l.listing_id', 'b.listing_id')
-    // .join('users as ul', 'l.user_id', 'ul.user_id')
 
-  // function findBy(filter) {
-  //   return db('bookings as b')
-  //   .select('b.booking_id', 'u.username', 'b.listing_id', 'b.startDate', 'b.stopDate')
-  //   .join('users as u', 'b.user_id', 'u.id')
-  //   .where(filter)
-  // }
+  function getUserWithData(id) {
+    return db("users")
+      .where({id})
+      .first()
+      .then( user =>{
+          let myUser = { ...user };
+          return (
+            db("bookings as b")
+              .leftJoin("listings as l", "b.listing_id", "l.listing_id")
+              .select(
+                "b.booking_id",
+                "b.user_id",
+                "b.listing_id",
+                "l.listing_name",
+                "l.user_id as listed_by",
+                "b.startDate",
+                "b.stopDate"
+              )
+              .then(bookings => {
+                let myBookings = bookings.filter(e => e.user_id === parseInt(id));
+                myUser.bookings = myBookings;
+                return(
+                  db("listings as l")
+                  .where({user_id: id})
+                  .then( listing => {
+
+                    myUser.listings = listing;
+                    return myUser;
+                  })
+                )
+              })
+
+          )
+      })
+    }

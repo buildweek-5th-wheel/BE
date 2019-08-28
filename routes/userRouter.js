@@ -23,32 +23,20 @@ router.put('/:id', restricted, (req,res)=>{
 
 // ----- Get a User -----
 router.get('/:id', restricted, (req,res)=> {
-  const id = req.params.id
+let id = req.params.id;
 
-  Users.findById(id)
-    .then( user => {
+Bookings.getUserWithData(id)
+  .then(user => {
+    res.status(200).json(user);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(400).json(err);
+  });
+});
 
-      !user ? res.status(400).json({message: "That user does not exist."}) :
 
-      Listings.findBy({user_id: id})
-      .then( listings => {
-        Bookings.findBy({user_id: id})
-          .then(bookings => {
-            res.status(200).json({...user,listings, bookings})
-          })
-          .catch( err => {
-            res.status(500).json({err, message: "In Bookings data model"})
-          })
-      })
-      .catch(err => {
-        res.status(500).json({err})
-      })
 
-    })
-    .catch( err => {
-      res.status(500).json({message: "Error happened in the server", err})
-    })
-})
 
 //----- Get all Users -----
 router.get('/', restricted, (req,res) => {
