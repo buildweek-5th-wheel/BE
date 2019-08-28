@@ -18,6 +18,8 @@
 > This is the server side code for the app 5th Wheel. Written with Node.js and Express, this app has a postgreSQL DB and is hosted on Heroku.
 
 ### 🏠 [Homepage](https://github.com/buildweek-5th-wheel/BE#readme)
+### :key: [API Docs](https://documenter.getpostman.com/view/8573861/SVfMTWGg)
+
 
 ## Install
 
