@@ -1,7 +1,7 @@
 {
-  "name": "BE",
+  "name": "5th-wheel-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the server side code for the app 5th Wheel. Written with Node.js and Express, this app has a postgreSQL DB and is hosted on Heroku.",
   "main": "index.js",
   "scripts": {
     "server": "nodemon index.js",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/buildweek-5th-wheel/BE.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Philip Johnson",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/buildweek-5th-wheel/BE/issues"
