@@ -10,16 +10,16 @@ exports.up = function(knex) {
             .notNullable()
             .references('id')
             .inTable('users')
-            // .onUpdate('CASCADE')
-            // .onDelete('CASCADE')
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE')
         b
             .integer('listing_id')
             .unsigned()
             .notNullable()
             .references('listing_id')
             .inTable('listings')
-            // .onUpdate('CASCADE')
-            // .onDelete('CASCADE')
+            .onUpdate('CASCADE')
+            .onDelete('CASCADE')
         b
             .date('startDate')
         b
