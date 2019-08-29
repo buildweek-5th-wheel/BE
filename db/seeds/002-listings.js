@@ -1,9 +1,7 @@
 
 exports.seed = function(knex, Promise) {
-  // Deletes ALL existing entries
-  return knex('listings')
-  .truncate()
-    .then(function () {
+
+
       // Inserts seed entries
       return knex('listings').insert([
         {
@@ -41,5 +39,5 @@ exports.seed = function(knex, Promise) {
         user_id: 6
       }
       ]);
-    });
+
 };

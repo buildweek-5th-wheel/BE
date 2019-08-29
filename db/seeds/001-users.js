@@ -2,9 +2,7 @@ const bcrypt = require('bcryptjs');
 
 exports.seed = function(knex, Promise) {
 
-  return knex('users')
-    .truncate()
-    .then(function () {
+
       // Inserts seed entries
       return knex('users').insert([
         {
@@ -19,5 +17,4 @@ exports.seed = function(knex, Promise) {
         { username: 'sunnymountains',password: bcrypt.hashSync("password123"), bio:"Vice poutine veniam cillum small batch sriracha sartorial. Lyft hell of flexitarian copper mug quinoa, street art man bun knausgaard cardigan anim.",image_url:"http://www.bigleaf.net/wp-content/uploads/2017/10/avatar-placeholder.png", landowner: true},
         { username: 'roadtrip4ever',password: bcrypt.hashSync("password123"), bio:"Vice poutine veniam cillum small batch sriracha sartorial. Lyft hell of flexitarian copper mug quinoa, street art man bun knausgaard cardigan anim.",image_url:"http://www.bigleaf.net/wp-content/uploads/2017/10/avatar-placeholder.png", landowner: true}
       ]);
-    });
 };
