@@ -34,8 +34,8 @@ exports.up = function(knex) {
             .notNullable()
             .references('id')
             .inTable('users')
-            .onUpdate('CASCADE')
-            .onDelete('CASCADE')
+            // .onUpdate('CASCADE')
+            // .onDelete('CASCADE')
          listings
             .string("image_url", 500)
           listings
