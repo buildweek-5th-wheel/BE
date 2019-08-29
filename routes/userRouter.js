@@ -1,5 +1,5 @@
 const router = require('express').Router();
-
+const bcrypt = require('bcryptjs');
 const Users = require('../models/users-model.js');
 const Listings = require('../models/listings-model.js');
 const Bookings = require('../models/bookings-model.js');
@@ -10,6 +10,17 @@ const restricted = require('../middleware/restricted.js');
 router.put('/:id', restricted, (req,res)=>{
     const id = req.params.id
     const user = req.body
+    if(user.password){
+      user.password = bcrypt.hashSync(user.password)
+      Users.update(user, id)
+      .then(updated => {
+        !updated ? res.status(400).json({message: "That user does not exist."}) :
+        res.status(200).json({message: `Successfully updated user with an ID of ${id}.`})
+      })
+      .catch(err => {
+        res.status(400).json({message: "You need to pass in the data you want to update."})
+      })
+    }
 
     Users.update(user, id)
       .then(updated => {
@@ -19,6 +30,7 @@ router.put('/:id', restricted, (req,res)=>{
       .catch(err => {
         res.status(400).json({message: "You need to pass in the data you want to update."})
       })
+
   })
 
 // ----- Get a User -----
