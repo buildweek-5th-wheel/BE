@@ -1,6 +1,6 @@
 // Update with your config settings.
 
-//fake Postgres config to keep knex from freaking out
+//fake Postgres config to keep knex from breaking if accidently switch to production environment
 const localPg = {
   host: 'localhost',
   database: 'db',
