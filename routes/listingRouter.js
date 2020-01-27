@@ -17,6 +17,7 @@ router.get('/', (req, res) => {
 router.post('/', restricted, (req,res) =>{
     let listing = req.body;
     console.log("listing in body", listing)
+    // Data validation
     !listing.listing_name || !listing.user_id ? res.status(400).json({message: "A new Listing must had a listing_name and a user_id property."}) :
     Listings.add(listing)
       .then(listing => {

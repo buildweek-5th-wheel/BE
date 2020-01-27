@@ -20,9 +20,8 @@ describe('POST /register', () => {
           landowner: false
         })
         .then(res => {
-          // check there there is one hobbit in the table
-          console.log("BODY",res.body)
 
+          console.log("BODY",res.body)
           expect(res.body).toHaveProperty("id");
         });
     });
@@ -37,7 +36,7 @@ describe('POST /register', () => {
             landowner: false
           })
           .then(res => {
-            // check there there is one hobbit in the table
+
             expect(res.status).toBe(201);
           });
       });
